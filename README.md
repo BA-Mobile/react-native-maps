@@ -1,4 +1,4 @@
-# fork by bachk react-native-maps [![npm version](https://img.shields.io/npm/v/react-native-maps.svg?style=flat)](https://www.npmjs.com/package/react-native-maps)
+# react-native-maps [![npm version](https://img.shields.io/npm/v/react-native-maps.svg?style=flat)](https://www.npmjs.com/package/react-native-maps)
 
 React Native Map components for iOS + Android
 
@@ -37,10 +37,6 @@ versions you should add `react` as a dependency in your `package.json`.
 [`<Circle />` Component API](docs/circle.md)
 
 [`<Overlay />` Component API](docs/overlay.md)
-
-[`<Heatmap />` Component API](docs/heatmap.md)
-
-[`<Geojson />` Component API](docs/geojson.md)
 
 ## General Usage
 
