@@ -4,16 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.facebook.react.bridge.ReadableArray;
-import com.facebook.react.bridge.ReadableMap;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.GroundOverlay;
 import com.google.android.gms.maps.model.GroundOverlayOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-
-import java.util.ArrayList;
 
 public class AirMapOverlay extends AirMapFeature implements ImageReadable {
 

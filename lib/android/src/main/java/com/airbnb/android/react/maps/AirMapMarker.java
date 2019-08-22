@@ -1,5 +1,7 @@
 package com.airbnb.android.react.maps;
 
+import android.animation.ObjectAnimator;
+import android.animation.TypeEvaluator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,11 +10,9 @@ import android.graphics.Color;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.util.Property;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.animation.ObjectAnimator;
-import android.util.Property;
-import android.animation.TypeEvaluator;
 
 import com.facebook.common.references.CloseableReference;
 import com.facebook.datasource.DataSource;

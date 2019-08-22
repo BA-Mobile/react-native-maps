@@ -10,8 +10,8 @@ import com.facebook.react.uimanager.LayoutShadowNode;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -95,11 +95,6 @@ public class AirMapMarkerManager extends ViewGroupManager<AirMapMarker> {
 //    public void setImage(AirMapMarker view, ReadableMap image) {
 //        view.setImage(image);
 //    }
-
-  @ReactProp(name = "icon")
-  public void setIcon(AirMapMarker view, @Nullable String source) {
-    view.setImage(source);
-  }
 
   @ReactProp(name = "pinColor", defaultInt = Color.RED, customType = "Color")
   public void setPinColor(AirMapMarker view, int pinColor) {

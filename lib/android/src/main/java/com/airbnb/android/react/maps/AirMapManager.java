@@ -19,10 +19,9 @@ import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.maps.android.data.kml.KmlLayer;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -39,8 +38,6 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
   private static final int SET_MAP_BOUNDARIES = 8;
   private static final int ANIMATE_TO_NAVIGATION = 9; 
   private static final int SET_INDOOR_ACTIVE_LEVEL_INDEX = 10;
-  private static final int SET_CAMERA = 11;
-  private static final int ANIMATE_CAMERA = 12;
 
 
   private final Map<String, Integer> MAP_TYPES = MapBuilder.of(
@@ -90,16 +87,6 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
     view.setInitialRegion(initialRegion);
   }
 
-  @ReactProp(name = "camera")
-  public void setCamera(AirMapView view, ReadableMap camera) {
-    view.setCamera(camera);
-  }
-
-  @ReactProp(name = "initialCamera")
-  public void setInitialCamera(AirMapView view, ReadableMap initialCamera) {
-    view.setInitialCamera(initialCamera);
-  }
-
   @ReactProp(name = "mapType")
   public void setMapType(AirMapView view, @Nullable String mapType) {
     int typeId = MAP_TYPES.get(mapType);
@@ -119,25 +106,43 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
     int bottom = 0;
     double density = (double) view.getResources().getDisplayMetrics().density;
 
+//    if (padding != null) {
+//      if (padding.hasKey("left")) {
+//        left = (int) (padding.getDouble("left") * density);
+//      }
+//
+//      if (padding.hasKey("top")) {
+//        top = (int) (padding.getDouble("top") * density);
+//      }
+//
+//      if (padding.hasKey("right")) {
+//        right = (int) (padding.getDouble("right") * density);
+//      }
+//
+//      if (padding.hasKey("bottom")) {
+//        bottom = (int) (padding.getDouble("bottom") * density);
+//      }
+//    }
+
     if (padding != null) {
       if (padding.hasKey("left")) {
-        left = (int) (padding.getDouble("left") * density);
+        left = padding.getInt("left");
       }
 
       if (padding.hasKey("top")) {
-        top = (int) (padding.getDouble("top") * density);
+        top = padding.getInt("top");
       }
 
       if (padding.hasKey("right")) {
-        right = (int) (padding.getDouble("right") * density);
+        right = padding.getInt("right");
       }
 
       if (padding.hasKey("bottom")) {
-        bottom = (int) (padding.getDouble("bottom") * density);
+        bottom = padding.getInt("bottom");
       }
     }
 
-    view.map.setPadding(left, top, right, bottom);
+    view.setPadding(left, top, right, bottom);
   }
 
   @ReactProp(name = "showsUserLocation", defaultBoolean = false)
@@ -264,20 +269,8 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
     float bearing;
     float angle;
     ReadableMap region;
-    ReadableMap camera;
 
     switch (commandId) {
-      case SET_CAMERA:
-        camera = args.getMap(0);
-        view.animateToCamera(camera, 0);
-        break;
-
-      case ANIMATE_CAMERA:
-        camera = args.getMap(0);
-        duration = args.getInt(1);
-        view.animateToCamera(camera, duration);
-        break;
-
       case ANIMATE_TO_NAVIGATION:
         region = args.getMap(0);
         lng = region.getDouble("longitude");
@@ -380,8 +373,6 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
   @Override
   public Map<String, Integer> getCommandsMap() {
     Map<String, Integer> map = this.CreateMap(
-        "setCamera", SET_CAMERA,
-        "animateCamera", ANIMATE_CAMERA,
         "animateToRegion", ANIMATE_TO_REGION,
         "animateToCoordinate", ANIMATE_TO_COORDINATE,
         "animateToViewingAngle", ANIMATE_TO_VIEWING_ANGLE,
@@ -401,7 +392,7 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
   }
 
   public static <K, V> Map<K, V> CreateMap(
-  K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8, K k9, V v9, K k10, V v10) {
+  K k1, V v1, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6, K k7, V v7, K k8, V v8) {
     Map map = new HashMap<K, V>();
     map.put(k1, v1);
     map.put(k2, v2);
@@ -411,8 +402,6 @@ public class AirMapManager extends ViewGroupManager<AirMapView> {
     map.put(k6, v6);
     map.put(k7, v7);
     map.put(k8, v8);
-    map.put(k9, v9);
-    map.put(k10, v10);
     return map;
   }
 

@@ -1,11 +1,9 @@
 package com.airbnb.android.react.maps;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
 
-import com.facebook.react.uimanager.ViewProps;
 import com.facebook.react.views.view.ReactViewGroup;
 
 public class ViewAttacherGroup extends ReactViewGroup {
